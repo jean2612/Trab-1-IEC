@@ -1,11 +1,12 @@
-/*Projeto Integrador 1: Conversor de bases num√©ricas. Constru√ß√£o de um programa de convers√£o entre bases num√©ricas (bin√°ria, octal, decimal e hexadecimal).
-O programa dever√° realizar a convers√£o de n√∫meros inteiros fornecidos pelo usu√°rio, em qualquer uma das bases definidas,
-para todas as demais bases citadas. Algumas restri√ß√µes quanto ao programa poder√£o ser definidas pelo professor em um documento espec√≠fico,
-contudo, uma restri√ß√£o √© que o tamanho dos n√∫meros, em bin√°rio, que o
-conversor deve manipular ser√° de, no m√≠nimo, 32 bits.*/
+/*Projeto Integrador 1: Conversor de bases numÈricas. ConstruÁ„o de um programa de convers„o entre bases numÈricas (bin·ria, octal, decimal e hexadecimal).
+O programa dever· realizar a convers„o de n˙meros inteiros fornecidos pelo usu·rio, em qualquer uma das bases definidas,
+para todas as demais bases citadas. Algumas restriÁıes quanto ao programa poder„o ser definidas pelo professor em um documento especÌfico,
+contudo, uma restriÁ„o È que o tamanho dos n˙meros, em bin·rio, que o
+conversor deve manipular ser· de, no mÌnimo, 32 bits.*/
 
 #include<stdio.h>
 #include<string.h>
+#include<math.h>
 
 void binario(void);
 void octal(void);
@@ -16,7 +17,7 @@ int main(){
 int op = 123;
 do{
 
-printf("[1] Bin√°rio;\n");
+printf("[1] Bin·rio;\n");
 printf("[2] Octal;\n");
 printf("[3] Decimal;\n");
 printf("[4] Hexadecimal;\n");
@@ -24,6 +25,7 @@ printf("[0] Sair.\n");
 printf("Escolha a base de entrada: \n");
 scanf("%i", &op);
 
+system("cls");
 
 switch (op) {
 
@@ -47,7 +49,7 @@ switch (op) {
   printf("Saindo!!!\n");
   break;
 
-  default: printf("Op√ß√£o Inv√°lida!!\n");
+  default: printf("OpÁ„o Inv·lida!!\n");
 
 }
 
@@ -59,18 +61,27 @@ switch (op) {
 
 
 void decimal(void){
-long int dec_real, dec;     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 √© estouro, representa√ß√£o apenas com int da extouro em 2^?
+long int dec_real, dec;     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 È estouro, representaÁ„o apenas com int da extouro em 2^?
 char bin[31];
 int aux;
 
   printf("Digite o valor em decimal para ser convertido para as demais bases: \n");
     scanf("%li", &dec_real);
+    
+    if(dec_real<0){
+    	printf("Valor precisa ser positivo!!!");
+    	return 1;
+	}
+    if(dec_real>=4294967295){
+    	printf("Valor maior de 32 bits!!!");
+    	return 1;
+	}
 
 dec = dec_real;
 
 for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
 
-      if(dec%2==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario √© 0
+      if(dec%2==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario È 0
         bin[aux]='0';
         dec=dec/2;
       }
@@ -83,7 +94,7 @@ for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
 }
 
 
-for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de convers√£o manual  ser "recursivo")
+for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de convers„o manual  ser "recursivo")
  printf("%c", bin[aux]);
 }
 
@@ -99,7 +110,7 @@ dec = dec_real;
 
 for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
 
-      if(dec%16==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario √© 0
+      if(dec%16==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario È 0
         bin[aux]='0';
         dec=dec/16;
       }
@@ -174,18 +185,62 @@ for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
       }
 
       else{
-        bin[aux]='E';
+        bin[aux]='F';
         dec=dec/16;
       }
 
 }
 
 
-for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de convers√£o manual  ser "recursivo")
+for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de convers„o manual  ser "recursivo")
  printf("%c", bin[aux]);
 }
 
 printf("\n");
+
+
+//termica converÁ„o decimal para hexa
+
+
+
+//comeÁa conversao decimal para octal
+
+
+dec = dec_real;
+int a;
+
+
+
+if(dec<=7){
+	aux=dec;
+}
+
+else    
+    {  
+
+        while(dec>=8 )   
+            {       
+                a=aux%8;  
+                aux=aux/8;  
+            }  
+            aux=aux%8;
+
+    }
+
+
+
+printf(" o numero octal eh: %i\n", aux);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
