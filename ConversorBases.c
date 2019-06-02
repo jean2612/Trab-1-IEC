@@ -7,7 +7,7 @@
       bin->oct
       bin->dec
       bin->hex
-        oct->bin
+        oct->bin OK, Falta erro de usuario.
         oct->dec
         oct->hex
           hex->bin OK
@@ -25,6 +25,7 @@
 //------------------------------------------------------------------------------- Váriaveis Globais
 int base=10;
 long int num= 00000000000000000000000000000000;
+char batata[10000];
 
 //------------------------------------------------------------------------------- Declaração das Funções
 
@@ -38,13 +39,19 @@ void convHexToBin(void);
 //------------------------------------------------------------------------------- Main
 int main(){
 
+  for(int i=0; i<32; i++){
+    batata[i]='0';
+  }
     //setlocale(LC_ALL, "Portuguese");
 
     char op;
 
 
   do {
-printf("(Estado atual) Base: %i\tNúmero: %li\n", base, num);
+//printf("(Estado atual) Base: %i\tNúmero: %li\n", base, num);
+printf("(Estado atual) Base: %i\tNúmero: ", base);
+puts(batata);
+printf("\n");
 printf("Menu:\n");
     printf("\tE) Definir base do número de (E)ntrada (default: 10 - decimal);\n");
     printf("\tN) Inserir (N)úmero para conversão (default: 0);\n");
@@ -71,6 +78,7 @@ switch(op){
 
       if((aux==2)||(aux==8)||(aux==10)||(aux==16)){
         base=aux;
+
       }
 
       else{
@@ -81,9 +89,25 @@ switch(op){
 
       case 'N':
       printf("Inserir (N)úmero para conversão\n");
-    //  printf("Digite Valor: \n");
+    //printf("Digite Valor: \n");
       //scanf("%li", &num);
-      convOctToBin();
+      if(base==2){
+
+        //so muda valor do num para novo num;
+      }
+
+      else if(base==8){
+        convOctToBin();
+      }
+
+      else if(base==10){
+        convDecToBin();
+      }
+
+      else if(base==16){
+        convHexToBin();
+      }
+
       break;
 
       case 'B':
@@ -177,8 +201,8 @@ void convDecToBin(void){ //######################FUNCINANDO#####################
 void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO################################################3
 
 
-  char numero[1000],aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
-
+  char numero[1000],aux[32]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
+  printf("Digite valor em octal: \n");
    scanf("%s", numero);
    int temp=0;
 
@@ -242,6 +266,7 @@ void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO##################
    }
 
     puts(aux);
+    num=aux;
   }
 
   else{
@@ -255,7 +280,8 @@ void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO##################
 
 void convHexToBin(void) {//###########################FUNCINANDO###############################################
 
-  char numero[11],aux[32]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
+  char numero[1000],aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
+   printf("Digite valor em Hexadecimal: \n");
    scanf("%s", numero);
    int temp=0;
 
@@ -331,6 +357,10 @@ void convHexToBin(void) {//###########################FUNCINANDO################
      }
    }
     puts(aux);
+    //num=aux;
+
+        strcpy(batata, aux);
+        memset(&aux, 0, sizeof(aux)); //limpa a váriavel aux;
   }
 
   else{
