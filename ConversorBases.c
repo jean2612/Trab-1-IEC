@@ -10,7 +10,7 @@
         oct->bin
         oct->dec
         oct->hex
-          hex->bin
+          hex->bin OK
           hex->oct
           hex->dec
 */
@@ -83,7 +83,7 @@ switch(op){
       printf("Inserir (N)úmero para conversão\n");
     //  printf("Digite Valor: \n");
       //scanf("%li", &num);
-      convHexToBin();
+      convOctToBin();
       break;
 
       case 'B':
@@ -172,10 +172,88 @@ void convDecToBin(void){ //######################FUNCINANDO#####################
 
 
 }
+//#############################################################################FIM FUNC DEC TO BIN#########################################
+
+void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO################################################3
 
 
+  char numero[1000],aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
 
-void convHexToBin(void) {
+   scanf("%s", numero);
+   int temp=0;
+
+   temp=strlen(numero);
+   //printf("%i\n", temp);
+
+   if(temp<=11){
+   for(int i = 0; i < numero[i] && numero[i] != '\0'; i++){
+
+     if(numero[i] == '0'){
+
+         strcat(aux,"000");
+
+     }
+     else if(numero[i] == '1'){
+
+         strcat(aux,"001");
+
+     }
+
+     else if(numero[i] == '2'){
+
+         strcat(aux,"010");
+
+     }
+
+     else if(numero[i] == '3'){
+
+         strcat(aux,"011");
+
+     }
+
+     else if(numero[i] == '4'){
+
+         strcat(aux,"100");
+
+     }
+
+     else if(numero[i] == '5'){
+
+         strcat(aux,"101");
+
+     }
+
+     else if(numero[i] == '6'){
+
+         strcat(aux,"110");
+
+     }
+
+     else if(numero[i] == '7'){
+
+         strcat(aux,"111");
+
+     }
+
+     else{
+
+       printf("Valor inserido não está em Octal, valor não alterado!!\n");
+     }
+   }
+
+    puts(aux);
+  }
+
+  else{
+    printf("Valor maior de 32 bits!!!\n");
+  }
+
+}
+
+//###################################################################FIM OCT TO BIN #####################################################
+
+
+void convHexToBin(void) {//###########################FUNCINANDO###############################################
 
   char numero[11],aux[32]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
    scanf("%s", numero);
@@ -259,5 +337,5 @@ void convHexToBin(void) {
     printf("Valor maior de 32 bits!!!\n");
   }
 
-
 }
+//#################################################FIM DA FUNÇÃO HEX TO BIN###########################################
