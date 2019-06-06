@@ -5,4 +5,4 @@ char batata[10000];
 void convDecToBin(void);
 void convOctToBin(void);
 void convHexToBin(void);
-void convBinToHex(void);
+void convBinToDec(void);

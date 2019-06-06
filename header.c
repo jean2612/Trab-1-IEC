@@ -52,7 +52,7 @@ void convDecToBin(void){ //######################FUNCINANDO#####################
 void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO################################################3
 
 
-  char numero[1000],aux[32]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
+  char numero[1000],aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
   printf("Digite valor em octal: \n");
    scanf("%s", numero);
    int temp=0;
@@ -117,7 +117,8 @@ void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO##################
    }
 
     puts(aux);
-    num=aux;
+    memset(&aux, 0, sizeof(aux)); //limpa a váriavel aux;
+    num= atoi(aux);
   }
 
   else{
@@ -223,21 +224,27 @@ void convHexToBin(void) {//###########################FUNCINANDO################
 
 
 
-void convBinToHex(void){ //###########################FUNCINANDO###############################################
-int ioio[32];
-int piroca, maozinha,tico=0, j=0, x=0;
+void convBinToDec(void){ //###########################FUNCINANDO###############################################
+char ioio[32];
+int piroca, j=0;
+long int tico=0;
   printf("Digite valor em Binário: \n");
   scanf("%s", ioio);
 
   piroca = strlen(ioio);
+if(piroca<=32){
 
-  for(maozinha=31; maozinha<=0; maozinha--){
-      x=pow(maozinha,2);
-      tico=ioio[maozinha]*x;
-      j=j+tico;
 
-  }
-
-printf("%d\n", j);
+  for (j = piroca-1; j >= 0; j--) {
+		//printf("%c|", numero[i]);
+		if (ioio[j] == '1') {
+			tico = tico + pow(2,piroca-1-j);
+		}
+	}
+	printf("\nDecimal: %li\n", tico);
+}
+else{
+  printf("Valor maior que 32 bits!!!\nValor não alterado!\n");
+}
 
 }

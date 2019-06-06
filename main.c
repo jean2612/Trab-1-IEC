@@ -12,7 +12,7 @@
     dec->oct
     dec->hex
       bin->oct
-      bin->dec
+      bin->dec OK
       bin->hex
         oct->bin OK, Falta erro de usuario.
         oct->dec
@@ -81,7 +81,7 @@ switch(op){
     //printf("Digite Valor: \n");
       //scanf("%li", &num);
       if(base==2){
-        convBinToHex();
+        convBinToDec();
         //so muda valor do num para novo num;
       }
 
