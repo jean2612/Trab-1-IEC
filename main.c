@@ -25,12 +25,12 @@
 
 int main(){
 
-  base=10;
-  num= 00000000000000000000000000000000;
+  base = 10;
+  strcpy(num, "00000000000000000000000000000000");
 
-  for(int i=0; i<32; i++){
+  /*for(int i=0; i<32; i++){
     batata[i]='0';
-  }
+  }*/
     //setlocale(LC_ALL, "Portuguese");
 
     char op;
@@ -39,7 +39,7 @@ int main(){
   do {
 //printf("(Estado atual) Base: %i\tNúmero: %li\n", base, num);
 printf("(Estado atual) Base: %i\tNúmero: ", base);
-puts(batata);
+printf("%s", num);
 printf("\n");
 printf("Menu:\n");
     printf("\tE) Definir base do número de (E)ntrada (default: 10 - decimal);\n");
@@ -77,11 +77,32 @@ switch(op){
       break;
 
       case 'N':
-      printf("Inserir (N)úmero para conversão\n");
+      //printf("Inserir (N)úmero para conversão\n");
     //printf("Digite Valor: \n");
       //scanf("%li", &num);
       if(base==2){
-        convBinToDec();
+        char n[40];
+        printf("Digite valor em binário: ");
+          scanf("%s", n);
+
+          int a=0, b=0, c=0;
+          char temp_num[40];
+          a=strlen(n);
+if(a<=32){
+  strcpy(num,n);
+}
+else{
+  printf("Valor maior de 32 bits!\nValor não alterado!\n");
+}
+
+        b=31-a;
+        memset(&temp_num, 0, sizeof(temp_num)); //limpa a váriavel coco;
+        for(c=b; c>=0; c--){
+          temp_num[c]='0';
+        }
+        strcat(temp_num, num);
+        strcpy(num, temp_num);
+        //ConvDecToOct();
         //so muda valor do num para novo num;
       }
 
@@ -100,11 +121,13 @@ switch(op){
       break;
 
       case 'B':
-      printf("Mostrar valor na base 2 - (B)inári\n");
+      printf("Mostrar valor na base 2 - (B)inário\n");
+      printf("%s\n", num);
       break;
 
       case 'O':
       printf("Mostrar valor na base 8 - (O)ctal\n");
+      convOctToBin();
       break;
 
       case 'D':

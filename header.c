@@ -52,59 +52,58 @@ void convDecToBin(void){ //######################FUNCINANDO#####################
 void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO################################################3
 
 
-  char numero[1000],aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
-  printf("Digite valor em octal: \n");
+  char aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
    scanf("%s", numero);
    int temp=0;
 
-   temp=strlen(numero);
+   temp=strlen(num);
    //printf("%i\n", temp);
 
    if(temp<=11){
-   for(int i = 0; i < numero[i] && numero[i] != '\0'; i++){
+   for(int i = 0; i < num[i] && num[i] != '\0'; i++){
 
-     if(numero[i] == '0'){
+     if(num[i] == '0'){
 
          strcat(aux,"000");
 
      }
-     else if(numero[i] == '1'){
+     else if(num[i] == '1'){
 
          strcat(aux,"001");
 
      }
 
-     else if(numero[i] == '2'){
+     else if(num[i] == '2'){
 
          strcat(aux,"010");
 
      }
 
-     else if(numero[i] == '3'){
+     else if(num[i] == '3'){
 
          strcat(aux,"011");
 
      }
 
-     else if(numero[i] == '4'){
+     else if(num[i] == '4'){
 
          strcat(aux,"100");
 
      }
 
-     else if(numero[i] == '5'){
+     else if(num[i] == '5'){
 
          strcat(aux,"101");
 
      }
 
-     else if(numero[i] == '6'){
+     else if(num[i] == '6'){
 
          strcat(aux,"110");
 
      }
 
-     else if(numero[i] == '7'){
+     else if(num[i] == '7'){
 
          strcat(aux,"111");
 
@@ -118,7 +117,7 @@ void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO##################
 
     puts(aux);
     memset(&aux, 0, sizeof(aux)); //limpa a váriavel aux;
-    num= atoi(aux);
+  //  num= atoi(aux);
   }
 
   else{
@@ -246,5 +245,128 @@ if(piroca<=32){
 else{
   printf("Valor maior que 32 bits!!!\nValor não alterado!\n");
 }
+
+}
+
+
+void ConvDecToHex(void){
+
+
+  long int dec;     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 é estouro, representação apenas com int da extouro em 2^?
+  char bin[31];
+  int aux;
+
+  printf("Digite valor em Decimal: \n");
+    scanf("%li", &dec);
+
+  for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
+
+        if(dec%16==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario é 0
+          bin[aux]='0';
+          dec=dec/16;
+        }
+
+        else if(dec%16==1){
+          bin[aux]='1';
+          dec=dec/16;
+        }
+
+        else if(dec%16==2){
+          bin[aux]='2';
+          dec=dec/16;
+        }
+
+        else if(dec%16==3){
+          bin[aux]='3';
+          dec=dec/16;
+        }
+
+        else if(dec%16==4){
+          bin[aux]='4';
+          dec=dec/16;
+        }
+
+        else if(dec%16==5){
+          bin[aux]='5';
+          dec=dec/16;
+        }
+
+        else if(dec%16==6){
+          bin[aux]='6';
+          dec=dec/16;
+        }
+
+        else if(dec%16==7){
+          bin[aux]='7';
+          dec=dec/16;
+        }
+
+        else if(dec%16==8){
+          bin[aux]='8';
+          dec=dec/16;
+        }
+        else if(dec%16==9){
+          bin[aux]='9';
+          dec=dec/16;
+        }
+
+        else if(dec%16==10){
+          bin[aux]='A';
+          dec=dec/16;
+        }
+
+        else if(dec%16==11){
+          bin[aux]='B';
+          dec=dec/16;
+        }
+
+        else if(dec%16==12){
+          bin[aux]='C';
+          dec=dec/16;
+        }
+
+        else if(dec%16==13){
+          bin[aux]='D';
+          dec=dec/16;
+        }
+
+        else if(dec%16==14){
+          bin[aux]='E';
+          dec=dec/16;
+        }
+
+        else{
+          bin[aux]='F';
+          dec=dec/16;
+        }
+
+  }
+
+
+  for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
+   printf("%c", bin[aux]);
+  }
+
+
+}
+
+void ConvDecToOct(void){
+
+
+  long int octalNumber = 0, dec;
+  long int i = 1;
+
+  printf("Digite numero em Decimal: \n");
+    scanf("%li", &dec);
+
+     while (dec != 0)
+     {
+         octalNumber = octalNumber + (dec % 8) * i;
+         dec = dec/8;
+         i = i * 10;
+     }
+
+
+  printf("%li\n\n", octalNumber);
 
 }
