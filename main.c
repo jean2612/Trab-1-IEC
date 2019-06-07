@@ -159,6 +159,7 @@ else{
 
       case 'C':
       printf("Sobre o (C)onversor\n");
+      About();
       break;
 
       case 'S':

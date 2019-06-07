@@ -8,3 +8,4 @@ void convHexToBin(void);
 void convBinToDec(void);
 void ConvDecToHex(void);
 void ConvDecToOct(void);
+void About(void);

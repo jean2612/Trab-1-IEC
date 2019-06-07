@@ -245,21 +245,21 @@ void convHexToBin(void) {//###########################FUNCINANDO################
 
 
 void convBinToDec(void){ //###########################FUNCINANDO###############################################
-int piroca, j=0;
-long int tico=0;
+int tam, j=0;
+long int aux=0;
 
 
-  piroca = strlen(num);
-if(piroca<=32){
+  tam = strlen(num);
+if(tam<=32){
 
 
-  for (j = piroca-1; j >= 0; j--) {
+  for (j = tam-1; j >= 0; j--) {
 		//printf("%c|", numero[i]);
 		if (num[j] == '1') {
-			tico = tico + pow(2,piroca-1-j);
+			aux = aux + pow(2,tam-1-j);
 		}
 	}
-	printf("%li\n", tico);
+	printf("%li\n", aux);
 }
 else{
   printf("Valor maior que 32 bits!!!\nValor não alterado!\n");
@@ -270,18 +270,18 @@ else{
 
 void ConvDecToHex(void){
 
-  int piroca, j=0;
-  long int tico=0;
+  int tam, j=0, i=0;
+  long int aux=0;
 
 
-    piroca = strlen(num);
-  if(piroca<=32){
+    tam = strlen(num);
+  if(tam<=32){
 
 
-    for (j = piroca-1; j >= 0; j--) {
+    for (j = tam-1; j >= 0; j--) {
       //printf("%c|", numero[i]);
       if (num[j] == '1') {
-        tico = tico + pow(2,piroca-1-j);
+        aux = aux + pow(2,tam-1-j);
       }
     }
   }
@@ -290,95 +290,94 @@ void ConvDecToHex(void){
   }
   //long int dec;     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 é estouro, representação apenas com int da extouro em 2^?
   char bin[31];
-  int aux;
 
 
-  for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
+  for (i = 32; i > 0; i--){  //percorre o vetor bin de 32 bits
 
-        if(tico%16==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario é 0
-          bin[aux]='0';
-          tico=tico/16;
+        if(aux%16==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario é 0
+          bin[i]='0';
+          aux=aux/16;
         }
 
-        else if(tico%16==1){
-          bin[aux]='1';
-          tico=tico/16;
+        else if(aux%16==1){
+          bin[i]='1';
+          aux=aux/16;
         }
 
-        else if(tico%16==2){
-          bin[aux]='2';
-          tico=tico/16;
+        else if(aux%16==2){
+          bin[i]='2';
+          aux=aux/16;
         }
 
-        else if(tico%16==3){
-          bin[aux]='3';
-          tico=tico/16;
+        else if(aux%16==3){
+          bin[i]='3';
+          aux=aux/16;
         }
 
-        else if(tico%16==4){
-          bin[aux]='4';
-          tico=tico/16;
+        else if(aux%16==4){
+          bin[i]='4';
+          aux=aux/16;
         }
 
-        else if(tico%16==5){
-          bin[aux]='5';
-          tico=tico/16;
+        else if(aux%16==5){
+          bin[i]='5';
+          aux=aux/16;
         }
 
-        else if(tico%16==6){
-          bin[aux]='6';
-          tico=tico/16;
+        else if(aux%16==6){
+          bin[i]='6';
+          aux=aux/16;
         }
 
-        else if(tico%16==7){
-          bin[aux]='7';
-          tico=tico/16;
+        else if(aux%16==7){
+          bin[i]='7';
+          aux=aux/16;
         }
 
-        else if(tico%16==8){
-          bin[aux]='8';
-          tico=tico/16;
+        else if(aux%16==8){
+          bin[i]='8';
+          aux=aux/16;
         }
-        else if(tico%16==9){
-          bin[aux]='9';
-          tico=tico/16;
-        }
-
-        else if(tico%16==10){
-          bin[aux]='A';
-          tico=tico/16;
+        else if(aux%16==9){
+          bin[i]='9';
+          aux=aux/16;
         }
 
-        else if(tico%16==11){
-          bin[aux]='B';
-          tico=tico/16;
+        else if(aux%16==10){
+          bin[i]='A';
+          aux=aux/16;
         }
 
-        else if(tico%16==12){
-          bin[aux]='C';
-          tico=tico/16;
+        else if(aux%16==11){
+          bin[i]='B';
+          aux=aux/16;
         }
 
-        else if(tico%16==13){
-          bin[aux]='D';
-          tico=tico/16;
+        else if(aux%16==12){
+          bin[i]='C';
+          aux=aux/16;
         }
 
-        else if(tico%16==14){
-          bin[aux]='E';
-          tico=tico/16;
+        else if(aux%16==13){
+          bin[i]='D';
+          aux=aux/16;
+        }
+
+        else if(aux%16==14){
+          bin[i]='E';
+          aux=aux/16;
         }
 
         else{
-          bin[aux]='F';
-          tico=tico/16;
+          bin[i]='F';
+          aux=aux/16;
         }
 
   }
 
 
-  for(aux=25; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
-   printf("%c", bin[aux]);
+  for(i=25; i<=32; i ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
+   printf("%c", bin[i]);
   }
 printf("\n");
 
@@ -386,18 +385,18 @@ printf("\n");
 
 void ConvDecToOct(void){
 
-  int piroca, j=0;
-  long int tico=0;
+  int tam, j=0;
+  long int aux=0;
 
 
-    piroca = strlen(num);
-  if(piroca<=32){
+    tam = strlen(num);
+  if(tam<=32){
 
 
-    for (j = piroca-1; j >= 0; j--) {
+    for (j = tam-1; j >= 0; j--) {
   		//printf("%c|", numero[i]);
   		if (num[j] == '1') {
-  			tico = tico + pow(2,piroca-1-j);
+  			aux = aux + pow(2,tam-1-j);
   		}
   	}
   }
@@ -405,18 +404,26 @@ void ConvDecToOct(void){
     printf("Valor maior que 32 bits!!!\nValor não alterado!\n");
   }
 
-  long int octalNumber = 0, dec;
+  long int octalNumber = 0;
   long int i = 1;
 
+     while (aux != 0){
 
-     while (tico != 0)
-     {
-         octalNumber = octalNumber + (tico % 8) * i;
-         tico = tico/8;
+         octalNumber = octalNumber + (aux % 8) * i;
+         aux = aux/8;
          i = i * 10;
      }
 
-
   printf("%li\n", octalNumber);
 
+}
+
+
+void About(void){
+  printf("Projeto Integrador 1 - Conversor de Bases.\n");
+  printf("Disciplina de Introdução à Engenharia de Computação\n");
+  printf("Discentes: Daniel de Souza Sanches e Jean Lucas Cimirro\n");
+  printf("Professor: C. M. Betemps\n");
+  printf("UNIPAMPA Bagé-RS 2019/1\n");
+  printf("Construção de um programa de conversão entre bases numéricas (binária, octal, decimal e hexadecimal). O programa realiza a conversão de números inteiros fornecidos pelo usuário, em qualquer uma das bases definidas, para todas as demais bases citadas.\n");
 }
