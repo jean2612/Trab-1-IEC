@@ -7,6 +7,10 @@
 
 //ConversorBases
 /*Precisa:
+bin pra todos OK
+dec pra todos OK
+oct pra todos OK
+hex pra todos
 
     dec->bin OK
     dec->oct
@@ -127,19 +131,30 @@ else{
 
       case 'O':
       printf("Mostrar valor na base 8 - (O)ctal\n");
-      convOctToBin();
+      ConvDecToOct();
       break;
 
       case 'D':
       printf("Mostrar valor na base 10 - (D)ecimal\n");
+      convBinToDec();
       break;
 
       case 'H':
       printf("Mostrar valor na base 16 - (H)exadecimal\n");
+      ConvDecToHex();
       break;
 
       case 'T':
       printf("Mostrar valor em (T)odas as bases;\n");
+      printf("Valor em Binário: ");
+      printf("%s\n", num);//printa em binario
+      printf("Valor em Octal: ");
+      ConvDecToOct();//printa em octal
+      printf("Valor em Decimal: ");
+      convBinToDec();//printa em decimal
+      printf("Valor em Hexadecimal: ");
+      ConvDecToHex();//printa em hexadecimal
+
       break;
 
       case 'C':

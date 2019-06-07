@@ -7,24 +7,35 @@
 
 void convDecToBin(void){ //######################FUNCINANDO###############################
 
-
-  long int num_copy;     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 é estouro, representação apenas com int da extouro em 2^?
+  if(base==10){
+    printf("Digite valor em Decimal: \n");
+    scanf("%s", num);
+  }
+  char i[50];     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 é estouro, representação apenas com int da extouro em 2^?
+  long int num_copy=0;
   char bin[31];
   int aux;
 
-
+int a=0;
+a = strlen(num);
   //dec_real = 10;
 
       if(num<0){
       	printf("Valor precisa ser positivo!!!\n\n");
       	return;
   	}
-      if(num>=4294967295){
-      	printf("Valor maior de 32 bits!!!\n\n");
-      	return;
-  	}
 
-  num_copy = num;
+    if(a>32){
+
+    //}
+    //  else if(num>=4294967295){
+      	printf("Valor maior de 32 bits!!!\n\n");
+      //	return;
+
+  	}
+strcpy(i, num);
+  //num_copy = num;
+  num_copy=atoi(i);
 
   for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
 
@@ -40,20 +51,25 @@ void convDecToBin(void){ //######################FUNCINANDO#####################
 
   }
 
-
-  for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
-   printf("%c", bin[aux]);
-  }
-
+//memset(&num, 0, sizeof(num));
+ for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
+   //printf("%c", bin[aux]);
+   num[aux-1]=bin[aux];
+ }
+  ///strcpy(num, bin);
 
 }
 //#############################################################################FIM FUNC DEC TO BIN#########################################
 
 void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO################################################3
 
+  if(base==8){
+      printf("Dgite valor em Octal: ");
+        scanf("%s", num);
+
+  }
 
   char aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
-   scanf("%s", numero);
    int temp=0;
 
    temp=strlen(num);
@@ -115,7 +131,8 @@ void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO##################
      }
    }
 
-    puts(aux);
+    //puts(aux);
+    strcpy(num, aux);
     memset(&aux, 0, sizeof(aux)); //limpa a váriavel aux;
   //  num= atoi(aux);
   }
@@ -132,12 +149,16 @@ void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO##################
 void convHexToBin(void) {//###########################FUNCINANDO###############################################
 
   char numero[1000],aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
-   printf("Digite valor em Hexadecimal: \n");
-   scanf("%s", numero);
+
+  if(base==16){
+      printf("Dgite valor em Hexadecimal: ");
+        scanf("%s", numero);
+
+  }
    int temp=0;
 
    temp=strlen(numero);
-   printf("%i\n", temp);
+  // printf("%i\n", temp);
 
    if(temp<=8){
    for(int i = 0; i < numero[i] && numero[i] != '\0'; i++)
@@ -207,10 +228,10 @@ void convHexToBin(void) {//###########################FUNCINANDO################
          strcat(aux,"1111");
      }
    }
-    puts(aux);
+    //puts(aux);
     //num=aux;
 
-        strcpy(batata, aux);
+        strcpy(num, aux);
         memset(&aux, 0, sizeof(aux)); //limpa a váriavel aux;
   }
 
@@ -224,23 +245,21 @@ void convHexToBin(void) {//###########################FUNCINANDO################
 
 
 void convBinToDec(void){ //###########################FUNCINANDO###############################################
-char ioio[32];
 int piroca, j=0;
 long int tico=0;
-  printf("Digite valor em Binário: \n");
-  scanf("%s", ioio);
 
-  piroca = strlen(ioio);
+
+  piroca = strlen(num);
 if(piroca<=32){
 
 
   for (j = piroca-1; j >= 0; j--) {
 		//printf("%c|", numero[i]);
-		if (ioio[j] == '1') {
+		if (num[j] == '1') {
 			tico = tico + pow(2,piroca-1-j);
 		}
 	}
-	printf("\nDecimal: %li\n", tico);
+	printf("%li\n", tico);
 }
 else{
   printf("Valor maior que 32 bits!!!\nValor não alterado!\n");
@@ -251,122 +270,153 @@ else{
 
 void ConvDecToHex(void){
 
+  int piroca, j=0;
+  long int tico=0;
 
-  long int dec;     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 é estouro, representação apenas com int da extouro em 2^?
+
+    piroca = strlen(num);
+  if(piroca<=32){
+
+
+    for (j = piroca-1; j >= 0; j--) {
+      //printf("%c|", numero[i]);
+      if (num[j] == '1') {
+        tico = tico + pow(2,piroca-1-j);
+      }
+    }
+  }
+  else{
+    printf("Valor maior que 32 bits!!!\nValor não alterado!\n");
+  }
+  //long int dec;     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 é estouro, representação apenas com int da extouro em 2^?
   char bin[31];
   int aux;
 
-  printf("Digite valor em Decimal: \n");
-    scanf("%li", &dec);
 
   for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
 
-        if(dec%16==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario é 0
+        if(tico%16==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario é 0
           bin[aux]='0';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==1){
+        else if(tico%16==1){
           bin[aux]='1';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==2){
+        else if(tico%16==2){
           bin[aux]='2';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==3){
+        else if(tico%16==3){
           bin[aux]='3';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==4){
+        else if(tico%16==4){
           bin[aux]='4';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==5){
+        else if(tico%16==5){
           bin[aux]='5';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==6){
+        else if(tico%16==6){
           bin[aux]='6';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==7){
+        else if(tico%16==7){
           bin[aux]='7';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==8){
+        else if(tico%16==8){
           bin[aux]='8';
-          dec=dec/16;
+          tico=tico/16;
         }
-        else if(dec%16==9){
+        else if(tico%16==9){
           bin[aux]='9';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==10){
+        else if(tico%16==10){
           bin[aux]='A';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==11){
+        else if(tico%16==11){
           bin[aux]='B';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==12){
+        else if(tico%16==12){
           bin[aux]='C';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==13){
+        else if(tico%16==13){
           bin[aux]='D';
-          dec=dec/16;
+          tico=tico/16;
         }
 
-        else if(dec%16==14){
+        else if(tico%16==14){
           bin[aux]='E';
-          dec=dec/16;
+          tico=tico/16;
         }
 
         else{
           bin[aux]='F';
-          dec=dec/16;
+          tico=tico/16;
         }
 
   }
 
 
-  for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
+  for(aux=25; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
    printf("%c", bin[aux]);
   }
-
+printf("\n");
 
 }
 
 void ConvDecToOct(void){
 
+  int piroca, j=0;
+  long int tico=0;
+
+
+    piroca = strlen(num);
+  if(piroca<=32){
+
+
+    for (j = piroca-1; j >= 0; j--) {
+  		//printf("%c|", numero[i]);
+  		if (num[j] == '1') {
+  			tico = tico + pow(2,piroca-1-j);
+  		}
+  	}
+  }
+  else{
+    printf("Valor maior que 32 bits!!!\nValor não alterado!\n");
+  }
 
   long int octalNumber = 0, dec;
   long int i = 1;
 
-  printf("Digite numero em Decimal: \n");
-    scanf("%li", &dec);
 
-     while (dec != 0)
+     while (tico != 0)
      {
-         octalNumber = octalNumber + (dec % 8) * i;
-         dec = dec/8;
+         octalNumber = octalNumber + (tico % 8) * i;
+         tico = tico/8;
          i = i * 10;
      }
 
 
-  printf("%li\n\n", octalNumber);
+  printf("%li\n", octalNumber);
 
 }
