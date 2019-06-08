@@ -6,38 +6,35 @@
 #include "header.h"
 
 void convDecToBin(void){ //######################FUNCINANDO###############################
-
+  char aux_cast[40];
   if(base==10){
     printf("Digite valor em Decimal: \n");
-    scanf("%s", num);
+    scanf("%s", aux_cast);
   }
   char i[50];     // long int por ser um numero de 32 bits, cujo valor maior q 2^32 é estouro, representação apenas com int da extouro em 2^?
   long int num_copy=0;
-  char bin[31];
-  int aux;
+  char bin[40];
+  long int aux;
 
-int a=0;
-a = strlen(num);
   //dec_real = 10;
 
-      if(num<0){
-      	printf("Valor precisa ser positivo!!!\n\n");
-      	return;
-  	}
+  if(aux_cast<0){
+    printf("Valor precisa ser positivo!!!\n\n");
+    printf("Valor não alterado!!!\n");
+    return;
+  }
+  strcpy(i, aux_cast);
+  num_copy=atol(i);
 
-    if(a>32){
+  if(num_copy>4294967295){
+    	printf("Valor maior de 32 bits!!!\n\n");
+      printf("Valor não alterado!!!\n");
+    	return;
+    }
 
-    //}
-    //  else if(num>=4294967295){
-      	printf("Valor maior de 32 bits!!!\n\n");
-      //	return;
+    else{
 
-  	}
-strcpy(i, num);
-  //num_copy = num;
-  num_copy=atoi(i);
-
-  for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
+      for (aux = 32; aux > 0; aux--){  //percorre o vetor bin de 32 bits
 
         if(num_copy%2==0){       //se valor decimal mod 2 == 0 o valor da posicao do binario é 0
           bin[aux]='0';
@@ -49,77 +46,78 @@ strcpy(i, num);
           num_copy=num_copy/2;
         }
 
+      }
+
+      //memset(&num, 0, sizeof(num));
+      for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
+      //printf("%c", bin[aux]);
+      num[aux-1]=bin[aux];
+    }
+    ///strcpy(num, bin);
   }
-
-//memset(&num, 0, sizeof(num));
- for(aux=1; aux<=32; aux ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
-   //printf("%c", bin[aux]);
-   num[aux-1]=bin[aux];
- }
-  ///strcpy(num, bin);
-
 }
 //#############################################################################FIM FUNC DEC TO BIN#########################################
 
 void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO################################################3
-
+char numero_oct_temp[40];
   if(base==8){
       printf("Dgite valor em Octal: ");
-        scanf("%s", num);
+        scanf("%s", numero_oct_temp);
 
   }
 
-  char aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
-   int temp=0;
+  char aux[32]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero_oct_tempero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
+  memset(&aux, 0, sizeof(aux));
+   int temp=0, aux2=0;
 
-   temp=strlen(num);
+   temp=strlen(numero_oct_temp);
    //printf("%i\n", temp);
 
    if(temp<=11){
-   for(int i = 0; i < num[i] && num[i] != '\0'; i++){
+   for(int i = 0; i < numero_oct_temp[i] && numero_oct_temp[i] != '\0'; i++){
 
-     if(num[i] == '0'){
+     if(numero_oct_temp[i] == '0'){
 
          strcat(aux,"000");
 
      }
-     else if(num[i] == '1'){
+     else if(numero_oct_temp[i] == '1'){
 
          strcat(aux,"001");
 
      }
 
-     else if(num[i] == '2'){
+     else if(numero_oct_temp[i] == '2'){
 
          strcat(aux,"010");
 
      }
 
-     else if(num[i] == '3'){
+     else if(numero_oct_temp[i] == '3'){
 
          strcat(aux,"011");
 
      }
 
-     else if(num[i] == '4'){
+     else if(numero_oct_temp[i] == '4'){
 
          strcat(aux,"100");
 
      }
 
-     else if(num[i] == '5'){
+     else if(numero_oct_temp[i] == '5'){
 
          strcat(aux,"101");
 
      }
 
-     else if(num[i] == '6'){
+     else if(numero_oct_temp[i] == '6'){
 
          strcat(aux,"110");
 
      }
 
-     else if(num[i] == '7'){
+     else if(numero_oct_temp[i] == '7'){
 
          strcat(aux,"111");
 
@@ -128,13 +126,20 @@ void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO##################
      else{
 
        printf("Valor inserido não está em Octal, valor não alterado!!\n");
+       aux2=123;
      }
+
    }
 
     //puts(aux);
+    if(aux2!=123){
+
     strcpy(num, aux);
+
     memset(&aux, 0, sizeof(aux)); //limpa a váriavel aux;
-  //  num= atoi(aux);
+    aux2=0;
+  }
+
   }
 
   else{
@@ -149,7 +154,7 @@ void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO##################
 void convHexToBin(void) {//###########################FUNCINANDO###############################################
 
   char numero[1000],aux[10000]; //numero vai ter 11 caracteres pois no /n do enter ele conta como carcater no for, já no strlen não, dai por isso chega numero com 8 caracteres, que o maior hexa que pode ser inserido é FFFFFFFF;
-
+  int aux2=0;
   if(base==16){
       printf("Dgite valor em Hexadecimal: ");
         scanf("%s", numero);
@@ -227,15 +232,23 @@ void convHexToBin(void) {//###########################FUNCINANDO################
      {
          strcat(aux,"1111");
      }
+
+     else{
+
+       printf("Valor inserido não está em Hexadecimal, valor não alterado!!\n");
+       aux2=123;
+     }
    }
     //puts(aux);
     //num=aux;
+if(aux2!=123){
 
         strcpy(num, aux);
         memset(&aux, 0, sizeof(aux)); //limpa a váriavel aux;
+      }
   }
 
-  else{
+  else if(temp>8){
     printf("Valor maior de 32 bits!!!\n");
   }
 
@@ -270,7 +283,7 @@ else{
 
 void ConvDecToHex(void){
 
-  int tam, j=0, i=0;
+  long int tam, j=0, i=0;
   long int aux=0;
 
 
@@ -376,7 +389,7 @@ void ConvDecToHex(void){
   }
 
 
-  for(i=25; i<=32; i ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
+  for(i=0; i<=32; i ++){        //exibe o vetor ao contrario (digamos q devido ao processo de conversão manual  ser "recursivo")
    printf("%c", bin[i]);
   }
 printf("\n");

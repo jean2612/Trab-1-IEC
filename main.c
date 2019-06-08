@@ -1,3 +1,5 @@
+//Daniel de Souza Sanches e Jean Lucas Cimirro
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -10,7 +12,7 @@
 bin pra todos OK
 dec pra todos OK
 oct pra todos OK
-hex pra todos
+hex pra todos OK
 
     dec->bin OK
     dec->oct
@@ -32,9 +34,6 @@ int main(){
   base = 10;
   strcpy(num, "00000000000000000000000000000000");
 
-  /*for(int i=0; i<32; i++){
-    batata[i]='0';
-  }*/
     //setlocale(LC_ALL, "Portuguese");
 
     char op;
@@ -81,9 +80,8 @@ switch(op){
       break;
 
       case 'N':
-      //printf("Inserir (N)úmero para conversão\n");
-    //printf("Digite Valor: \n");
-      //scanf("%li", &num);
+      printf("Inserir (N)úmero para conversão\n");
+
       if(base==2){
         char n[40];
         printf("Digite valor em binário: ");
@@ -106,8 +104,7 @@ else{
         }
         strcat(temp_num, num);
         strcpy(num, temp_num);
-        //ConvDecToOct();
-        //so muda valor do num para novo num;
+
       }
 
       else if(base==8){
