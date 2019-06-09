@@ -84,26 +84,34 @@ switch(op){
 
       if(base==2){
         char n[40];
+        int ver_b=0;
         printf("Digite valor em binário: ");
           scanf("%s", n);
 
           int a=0, b=0, c=0;
           char temp_num[40];
           a=strlen(n);
-if(a<=32){
+          int abc;
+          for(abc=0; abc<=a; abc++){
+            if((n[abc]!='0')&&(n[abc]!='1')){
+              ver_b++;
+            }
+          }
+
+if((a<=32)&&(ver_b<=1)){
   strcpy(num,n);
+  b=31-a;
+  memset(&temp_num, 0, sizeof(temp_num)); //limpa a váriavel coco;
+  for(c=b; c>=0; c--){
+    temp_num[c]='0';
+  }
+  strcat(temp_num, num);
+  strcpy(num, temp_num);
 }
 else{
-  printf("Valor maior de 32 bits!\nValor não alterado!\n");
+  printf("Valor maior de 32 bits! Ou valor não binário!\nValor não alterado!\n");
 }
 
-        b=31-a;
-        memset(&temp_num, 0, sizeof(temp_num)); //limpa a váriavel coco;
-        for(c=b; c>=0; c--){
-          temp_num[c]='0';
-        }
-        strcat(temp_num, num);
-        strcpy(num, temp_num);
 
       }
 

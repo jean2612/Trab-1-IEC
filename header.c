@@ -58,6 +58,7 @@ void convDecToBin(void){ //######################FUNCINANDO#####################
 }
 //#############################################################################FIM FUNC DEC TO BIN#########################################
 
+
 void convOctToBin(void){// CONVERSOR OK, FALTA ERRO DE USUARIO################################################3
 char numero_oct_temp[40];
   if(base==8){

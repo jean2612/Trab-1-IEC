@@ -1,6 +1,9 @@
+//variaveis globais
+
 int base;
 char num[330];
 char batata[10000];
+//procedimentos
 
 void convDecToBin(void);
 void convOctToBin(void);
